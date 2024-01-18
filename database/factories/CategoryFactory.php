@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,13 @@ class CategoryFactory extends Factory
      */
     public function definition(): array
     {
+        //get latest id insert in categories table because the column name is unique
+        $lastIdInsertIntTable = Category::latest()->first();
+        $lastIdInsertIntTable = $lastIdInsertIntTable->id;
+
         return [
-            "name" => $this->faker->word()
+            //this +1 serves to avoid the unique key exception
+            "name" => $this->faker->unique()->word . $lastIdInsertIntTable +1
         ];
     }
 }
