@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Product extends Model
+class Color extends Model
 {
     use HasFactory;
 
-    public function colors(): BelongsToMany{
+    public function products(): BelongsToMany{
 
-        return $this->belongsToMany(Color::class);
+        return $this->belongsToMany(Product::class);
 
     }
 }

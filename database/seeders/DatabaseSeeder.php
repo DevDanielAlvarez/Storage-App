@@ -18,8 +18,10 @@ class DatabaseSeeder extends Seeder
             //⚠️ priority 1
             SupplierSeeder::class,
             CategorySeeder::class,
+            ColorSeeder::class,
+
             //⚠️ priority 2
-            ProductSeeder::class
+            ProductSeeder::class,
         ]);
     }
 }
