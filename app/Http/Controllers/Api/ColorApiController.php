@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Http\Requests\StoreProductRequest;
-use App\Http\Requests\UpdateProductRequest;
-use App\Models\Product;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreColorRequest;
+use App\Http\Requests\UpdateColorRequest;
+use App\Models\Color;
 
-class ProductController extends Controller
+class ColorApiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +28,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProductRequest $request)
+    public function store(StoreColorRequest $request)
     {
         //
     }
@@ -35,7 +36,7 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show(Color $color)
     {
         //
     }
@@ -43,7 +44,7 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product)
+    public function edit(Color $color)
     {
         //
     }
@@ -51,7 +52,7 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(UpdateColorRequest $request, Color $color)
     {
         //
     }
@@ -59,7 +60,7 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy(Color $color)
     {
         //
     }

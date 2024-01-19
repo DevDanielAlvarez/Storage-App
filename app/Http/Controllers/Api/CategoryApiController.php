@@ -1,19 +1,26 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use App\Http\Resources\CategoryResource;
 use App\Models\Category;
+use App\Services\CategoryService;
 
-class CategoryController extends Controller
+class CategoryApiController extends Controller
 {
+    public function __construct(protected CategoryService $service)
+    {
+
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return CategoryResource::collection($this->service->index());
     }
 
     /**
