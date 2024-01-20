@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Http\Requests\UpdateCategoryRequest;
+use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 
 class CategoryService {
@@ -11,11 +13,27 @@ class CategoryService {
     }
 
     public function index(){
-        return $allCategories = Category::take(10)->get();
+        return $allCategories = $this->model->take(10)->get();
 
     }
 
     public function store($data){
-        return $categoryStored = Category::create($data);
+         $categoryStored = $this->model->create($data);
+         return new CategoryService($categoryStored);
+    }
+
+    public function update(array $request): CategoryResource{
+
+        $categoryFound = $this->model->findOrFail($request['id']);
+        $categoryFound->name = $request['name'];
+        $categoryFound->save();
+
+        $categoryUpdated = $categoryFound;
+
+        return new CategoryResource($categoryUpdated);
+
+    }
+    public function destroy($id):bool{
+        return $this->model->destroy($id);
     }
 }

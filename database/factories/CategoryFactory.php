@@ -17,13 +17,10 @@ class CategoryFactory extends Factory
      */
     public function definition(): array
     {
-        //get latest id insert in categories table because the column name is unique
-        $lastIdInsertIntTable = Category::latest()->first();
-        $lastIdInsertIntTable = $lastIdInsertIntTable->id;
+
 
         return [
-            //this +1 serves to avoid the unique key exception
-            "name" => $this->faker->unique()->word . $lastIdInsertIntTable +1
+            "name" => $this->faker->unique()->word
         ];
     }
 }

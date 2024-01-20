@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateCategoryRequest;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use App\Services\CategoryService;
+use Illuminate\Http\Request;
 
 class CategoryApiController extends Controller
 {
@@ -20,6 +21,8 @@ class CategoryApiController extends Controller
      */
     public function index()
     {
+        //Mudar a logic do resource para dentro do service, retornar apenas $this->service->index();
+
         return CategoryResource::collection($this->service->index());
     }
 
@@ -28,11 +31,15 @@ class CategoryApiController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        if(!$this->service->store($request->validated())){
+        if(!$categoryCreatedData = $this->service->store($request->validated())){
             return response()->json("Error",422);
         }
 
-        return response()->json("Category Register Success!");
+        return response()->json([
+            "message" => "Category Register Success!",
+            "successQuery" => true,
+            "categoryCreatedData" => $categoryCreatedData
+        ]);
 
 
     }
@@ -56,16 +63,31 @@ class CategoryApiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCategoryRequest $request, Category $category)
+    public function update(UpdateCategoryRequest $request)
     {
-        //
+        $categoryUpdatedData = $this->service->update($request->only(['id','name']));
+        return response()->json([
+            "message" => "category updated success!",
+            "successQuery" => true,
+            "categoryUpdatedData" => $categoryUpdatedData
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy(Request $request)
     {
-        //
+        if(!$this->service->destroy($request->id)){
+            return response()->json([
+                "message" => "Error",
+                "successQuery" => false
+            ]);
+        }
+
+        return response()->json([
+            "message" => "category deleted!",
+            "successQuery" => true
+        ]);
     }
 }

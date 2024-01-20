@@ -1,5 +1,8 @@
 <?php
-
+/*
+É necessário usar o service do recurso e nao usar o model, pois com o model é não testamos a funcionalidade
+dentro do contexto esperado.
+*/
 //read
 
 use App\Models\Category;
