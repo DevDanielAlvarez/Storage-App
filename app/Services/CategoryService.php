@@ -14,4 +14,8 @@ class CategoryService {
         return $allCategories = Category::take(10)->get();
 
     }
+
+    public function store($data){
+        return $categoryStored = Category::create($data);
+    }
 }

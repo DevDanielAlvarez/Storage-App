@@ -24,19 +24,17 @@ class CategoryApiController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        if(!$this->service->store($request->validated())){
+            return response()->json("Error",422);
+        }
+
+        return response()->json("Category Register Success!");
+
+
     }
 
     /**
