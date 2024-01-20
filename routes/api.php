@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\CategoryApiController;
+use App\Http\Controllers\CategoryController;
 use App\Models\Color;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,7 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/', function() {
-    $colorFound = Color::findOrFail(1);
 
-    dd($colorFound->products);
 });
+
+Route::apiResource('categories', CategoryApiController::class);

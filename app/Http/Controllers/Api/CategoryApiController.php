@@ -1,27 +1,26 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use App\Http\Resources\CategoryResource;
 use App\Models\Category;
+use App\Services\CategoryService;
 
-class CategoryController extends Controller
+class CategoryApiController extends Controller
 {
+    public function __construct(protected CategoryService $service)
+    {
+
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return CategoryResource::collection($this->service->index());
     }
 
     /**
@@ -29,7 +28,13 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        if(!$this->service->store($request->validated())){
+            return response()->json("Error",422);
+        }
+
+        return response()->json("Category Register Success!");
+
+
     }
 
     /**
