@@ -13,6 +13,14 @@ use Carbon\Carbon;
 use App\Http\Requests\StoreCategoryRequest;
 use Tests\TestCase;
 
+//Read
+it("Read a category", function(){
+    $response = test()->get(route('categories.index'));
+    expect($response->getStatusCode())->toBe(200);
+
+});
+
+//Create
 it('create a category', function(){
     //unique name
     $fakeNameCategory = "testCategory ". Carbon::now()->timestamp;
