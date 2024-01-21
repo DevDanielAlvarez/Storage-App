@@ -6,23 +6,17 @@ dentro do contexto esperado.
 //read
 
 use App\Models\Category;
+use App\Http\Controllers\Api\CategoryApiController;
+use App\Http\Resources\CategoryResource;
+use App\Services\CategoryService;
+use Carbon\Carbon;
+use App\Http\Requests\StoreCategoryRequest;
+use Tests\TestCase;
 
-//Read
-it("read categories", function(){
+it('create a category', function(){
+    //unique name
+    $fakeNameCategory = "testCategory ". Carbon::now()->timestamp;
+    $response = test()->post(route('categories.store',["name" => $fakeNameCategory]));
 
-    $hasCategory = Category::first();
-
-    if($hasCategory){
-        $categories = Category::take(5)->get();
-        expect($categories)->not->toBeEmpty();
-    }else{
-        $this->markTestSkipped('Nenhuma categoria encontrada no banco de dados.');
-    }
-});
-
-//Create
-it("create a category", function(){
-    $categoryCreated = Category::factory(1)->create();
-    // dd($categoryCreated[0]->name);
-    expect($categoryCreated->toArray())->toBeArray();
+    expect($response->getStatusCode())->toBe(200);
 });
