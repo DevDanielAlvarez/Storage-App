@@ -42,3 +42,13 @@ it('delete a category', function(){
     ]));
     expect($response->getStatusCode())->toBe(200);
 });
+
+
+//Show
+
+it("show a category", function(){
+    $response = test()->get(route('categories.show',[
+        "category" => "1"
+    ]));
+    expect($response->getStatusCode())->toBe(200);
+});

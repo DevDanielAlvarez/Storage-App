@@ -46,22 +46,17 @@ class CategoryApiController extends Controller
 
     /**
      * Display the specified resource.
+     * @var category categoryId
      */
     public function show(Category $category)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Category $category)
-    {
-        //
+        $category= $this->service->show($category->id);
+        return new CategoryResource($category);
     }
 
     /**
      * Update the specified resource in storage.
+     * @var category categoryId
      */
     public function update(UpdateCategoryRequest $request,$category)
     {

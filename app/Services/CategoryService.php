@@ -17,6 +17,12 @@ class CategoryService {
 
     }
 
+    public function show(string $categoryId){
+
+        return Category::findOrFail($categoryId);
+
+    }
+
     public function store($data){
          $categoryStored = $this->model->create($data);
          return new CategoryService($categoryStored);
