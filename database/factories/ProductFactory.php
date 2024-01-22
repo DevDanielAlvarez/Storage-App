@@ -18,9 +18,11 @@ class ProductFactory extends Factory
      */
     public function definition(): array
     {
+        $category = Category::factory()->create();
+
         return [
             //foreign keys
-            "category_id" => Category::factory(),
+            "category_id" => $category->id,
             "supplier_id" => Supplier::factory(),
 
             //normal columns
