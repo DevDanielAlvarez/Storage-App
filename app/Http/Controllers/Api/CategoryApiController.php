@@ -76,9 +76,9 @@ class CategoryApiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request)
+    public function destroy(string $categoryId)
     {
-        if(!$this->service->destroy($request->id)){
+        if(!$this->service->destroy($categoryId)){
             return response()->json([
                 "message" => "Error",
                 "successQuery" => false

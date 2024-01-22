@@ -13,13 +13,6 @@ use Carbon\Carbon;
 use App\Http\Requests\StoreCategoryRequest;
 use Tests\TestCase;
 
-//Read
-it("Read a category", function(){
-    $response = test()->get(route('categories.index'));
-    expect($response->getStatusCode())->toBe(200);
-
-});
-
 //Create
 it('create a category', function(){
     //unique name
@@ -28,6 +21,14 @@ it('create a category', function(){
 
     expect($response->getStatusCode())->toBe(200);
 });
+
+//Read
+it("Read a category", function(){
+    $response = test()->get(route('categories.index'));
+    expect($response->getStatusCode())->toBe(200);
+
+});
+
 
 //Update
 it('updated a category', function(){
@@ -40,4 +41,14 @@ it('updated a category', function(){
     ]));
     expect($response->getStatusCode())->toBe(200);
 
+});
+
+//Delete
+it('delete a category', function(){
+    $categoryFound = Category::latest()->first();
+    echo $categoryFound->id;
+    $response = test()->delete(route('categories.destroy',[
+        "category" => $categoryFound->id
+    ]));
+    expect($response->getStatusCode())->toBe(200);
 });

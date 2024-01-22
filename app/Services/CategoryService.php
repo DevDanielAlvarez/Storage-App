@@ -31,7 +31,8 @@ class CategoryService {
         return new CategoryResource($categoryFound);
 
     }
-    public function destroy($id):bool{
-        return $this->model->destroy($id);
+
+    public function destroy(string $categoryId):bool{
+        return $this->model->destroy($categoryId);
     }
 }
