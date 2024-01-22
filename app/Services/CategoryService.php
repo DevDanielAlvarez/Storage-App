@@ -22,15 +22,13 @@ class CategoryService {
          return new CategoryService($categoryStored);
     }
 
-    public function update(array $request): CategoryResource{
+    public function update(array $request, string $categoryId): CategoryResource{
 
-        $categoryFound = $this->model->findOrFail($request['id']);
+        $categoryFound = $this->model->findOrFail($categoryId);
         $categoryFound->name = $request['name'];
         $categoryFound->save();
 
-        $categoryUpdated = $categoryFound;
-
-        return new CategoryResource($categoryUpdated);
+        return new CategoryResource($categoryFound);
 
     }
     public function destroy($id):bool{

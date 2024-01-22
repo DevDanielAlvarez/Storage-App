@@ -63,9 +63,9 @@ class CategoryApiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCategoryRequest $request)
+    public function update(UpdateCategoryRequest $request,$category)
     {
-        $categoryUpdatedData = $this->service->update($request->only(['id','name']));
+        $categoryUpdatedData = $this->service->update($request->only(['category','name']),$category);
         return response()->json([
             "message" => "category updated success!",
             "successQuery" => true,

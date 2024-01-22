@@ -28,3 +28,16 @@ it('create a category', function(){
 
     expect($response->getStatusCode())->toBe(200);
 });
+
+//Update
+it('updated a category', function(){
+    $category = Category::first();
+    // dd($category->id);
+    $response = test()->put(route('categories.update',[
+        "category" => 1,
+        "test" => "test",
+        "name" => "danidanidani"
+    ]));
+    expect($response->getStatusCode())->toBe(200);
+
+});
