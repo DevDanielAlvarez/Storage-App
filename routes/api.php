@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\CategoryApiController;
+use App\Http\Controllers\Api\ProductApiController;
 use App\Http\Controllers\CategoryController;
 use App\Models\Color;
 use Illuminate\Http\Request;
@@ -26,3 +27,4 @@ Route::get('/', function() {
 });
 
 Route::apiResource('categories', CategoryApiController::class);
+Route::apiResource('products',ProductApiController::class);
