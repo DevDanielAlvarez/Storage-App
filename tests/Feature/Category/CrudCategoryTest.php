@@ -2,7 +2,7 @@
 
 use App\Models\Category;
 use Carbon\Carbon;
-use App\Http\Requests\StoreCategoryRequest;
+
 
 //Create
 it('create a category', function(){

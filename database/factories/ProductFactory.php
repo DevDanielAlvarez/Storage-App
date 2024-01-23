@@ -18,11 +18,12 @@ class ProductFactory extends Factory
      */
     public function definition(): array
     {
-        $category = Category::factory()->create();
+        $categoryIds = Category::pluck('id');
+        $randomCategoryId = $this->faker->randomElement($categoryIds);
 
         return [
             //foreign keys
-            "category_id" => $category->id,
+            "category_id" => $randomCategoryId,
             "supplier_id" => Supplier::factory(),
 
             //normal columns
