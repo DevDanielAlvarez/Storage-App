@@ -10,9 +10,12 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $guarded = ["id"];
+
     public function colors(): BelongsToMany{
 
         return $this->belongsToMany(Color::class);
 
     }
+
 }

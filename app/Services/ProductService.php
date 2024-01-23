@@ -6,13 +6,11 @@ use App\Models\Product;
 
 class ProductService implements ServiceInterface{
 
-    public function __construct(protected Product $model)
-    {
-
-    }
+    public function __construct(protected Product $model){}
 
     public function index(){
-        return $this->model->all();
+       return $products = $this->model->paginate(10);
+
     }
 
     public function store(array $data)
