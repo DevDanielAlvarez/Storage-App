@@ -7,5 +7,5 @@ interface ServiceInterface{
     public function store(array $data);
     public function show($id);
     public function update($data,$id);
-    public function delete($id):bool;
+    public function destroy(string $id):bool;
 }

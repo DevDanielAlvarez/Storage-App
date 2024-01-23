@@ -24,13 +24,14 @@ class ProductService implements ServiceInterface{
         return $this->model->findOrFail($productId);
     }
     public function update($data,$productId){
-        $productUpdated = $this->model->update($data);
-        return $productUpdated;
+        $productFound = $this->model->findOrFail($productId);
+        $productFound->update($data);
+
+        return $productFound;
     }
 
-    public function delete($productId):bool{
-        return $this->model->delete($productId);
-
+    public function destroy(string $productId):bool{
+        return $this->model->destroy($productId);
     }
 
 

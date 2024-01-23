@@ -41,17 +41,10 @@ class ProductApiController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show($product)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Product $product)
-    {
-        //
+        $productFound = $this->service->show($product);
+        return new ProductResource($productFound);
     }
 
     /**
@@ -59,14 +52,16 @@ class ProductApiController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+
+        return new ProductResource($this->service->update($request->validated(),$product->id));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy($product)
     {
-        //
+        $responseService = $this->service->destroy($product);
+        return response()->json($responseService);
     }
 }
