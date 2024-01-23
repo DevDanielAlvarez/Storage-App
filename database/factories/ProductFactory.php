@@ -18,7 +18,7 @@ class ProductFactory extends Factory
      */
     public function definition(): array
     {
-        $categoryIds = Category::pluck('id');
+        $categoryIds = Category::pluck('id')->take(10);
         $randomCategoryId = $this->faker->randomElement($categoryIds);
 
         return [
