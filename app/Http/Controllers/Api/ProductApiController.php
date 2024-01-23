@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateProductRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use App\Services\ProductService;
+use Exception;
 
 class ProductApiController extends Controller
 {
@@ -43,8 +44,16 @@ class ProductApiController extends Controller
      */
     public function show($product)
     {
-        $productFound = $this->service->show($product);
-        return new ProductResource($productFound);
+            try{
+                $productFound = $this->service->show($product);
+                return new ProductResource($productFound);
+            }
+            catch(Exception $exception){
+                return response()->json([
+                    "message" => "Not Found",
+                ],404);
+            }
+
     }
 
     /**
